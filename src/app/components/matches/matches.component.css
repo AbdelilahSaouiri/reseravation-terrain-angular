@@ -1,0 +1,21 @@
+.border-time{
+  border: 2px solid rgb(16, 12, 103);
+  padding: 10px 10px;
+  font-size: 23px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+i{
+    font-size: 17px;
+}
+button{
+    margin-bottom: 5px;
+    font-weight: 500;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    border-radius:0px;
+    padding: 10px 20px ;
+    text-align: center;
+    -webkit-border-radius:0px;
+    -moz-border-radius:0px;
+    -ms-border-radius:0px;
+    -o-border-radius:0px;
+}

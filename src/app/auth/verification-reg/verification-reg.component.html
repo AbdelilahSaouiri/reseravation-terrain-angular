@@ -1,0 +1,21 @@
+<app-nav></app-nav>
+
+<div class="mt-5 p-5">
+  <div class="container">
+    <div class="card mt-2 p-3 font">
+      <div class="card-body mx-auto">
+        @if(message){
+        <h4 class="text-center">{{ message }}</h4>
+        }@else {
+        <h5 class="font">Email Verified Successfully</h5>
+        <a
+          role="button"
+          (click)="home()"
+          class="d-block text-decoration-none fs-4 p-2 ms-5"
+          >Go Home <i class="bi bi-door-open-fill"></i
+        ></a>
+        }
+      </div>
+    </div>
+  </div>
+</div>

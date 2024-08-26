@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-10 mx-auto">
+      <div class="pt-5">
+        <h3 class="text-center">Réserver votre match</h3>
+        <hr class="bg-dark text-dark" />
+      </div>
+      <div class="text-center">
+        <button
+          (click)="handleToday()"
+          [ngClass]="
+            btnColored === 1
+              ? 'btn btn-info px-4 py-3 mx-3'
+              : 'btn btn-outline-info px-4 py-3 mx-3'
+          "
+        >
+          <span role="button" class="text-center fs-5 text-white">{{
+            today
+          }}</span>
+        </button>
+        <button
+          (click)="handleTomorrow()"
+          [ngClass]="
+            btnColored === 2
+              ? 'btn btn-info px-4 py-3 mx-3'
+              : 'btn btn-outline-info px-4 py-3 mx-3'
+          "
+        >
+          <span role="button" class="text-center fs-5 text-white">{{
+            tomorrow
+          }}</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

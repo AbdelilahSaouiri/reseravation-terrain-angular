@@ -1,0 +1,196 @@
+<app-nav></app-nav>
+<div class="mt-5 pt-2">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-7 mx-auto">
+        <div class="pt-5 mt-5" [hidden]="!isLoading">
+          <div class="lds-facebook">
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+          <span class="d-block text-center fs-5 bg-info py-2"
+            >Merci d'attendre quelques secondes...</span
+          >
+        </div>
+        <div [hidden]="isLoading" class="card">
+          <div class="card-title text-center mt-2 font text-primary">
+            S'enregistrer
+          </div>
+          <div class="card-body">
+            <form [formGroup]="formRegister" (ngSubmit)="OnSubmit()">
+              <div class="mb-2">
+                <label class="form-label">Nom Complet</label>
+                <input
+                  class="form-control"
+                  type="text"
+                  formControlName="username"
+                  placeholder="Votre nom complet"
+                />
+                <div
+                  *ngIf="
+                    formRegister.get('username')?.errors &&
+                    (formRegister.get('username')?.dirty ||
+                      formRegister.get('username')?.touched)
+                  "
+                >
+                  <span
+                    *ngIf="formRegister.get('username')?.errors?.['required']"
+                    class="text-danger"
+                    >Le nom complet est requis</span
+                  >
+                  <span
+                    *ngIf="formRegister.get('username')?.errors?.['minlength']"
+                    class="text-danger"
+                    >Le nom complet doit contenir au moins 4 caractères</span
+                  >
+                  <span
+                    *ngIf="formRegister.get('username')?.errors?.['maxlength']"
+                    class="text-danger"
+                    >Le nom complet doit contenir au maximum 80 caractères</span
+                  >
+                </div>
+              </div>
+              <div class="mb-4">
+                <label class="form-label">Année</label>
+                <select
+                  class="form-select"
+                  aria-label="Default select example"
+                  formControlName="year"
+                >
+                  <option selected>Choisir l'année</option>
+                  <option value="1">AP1</option>
+                  <option value="2">AP2</option>
+                  <option value="3">CI1</option>
+                  <option value="4">CI2</option>
+                  <option value="5">CI3</option>
+                </select>
+                <div
+                  *ngIf="
+                    formRegister.get('year')?.errors &&
+                    (formRegister.get('year')?.dirty ||
+                      formRegister.get('year')?.touched)
+                  "
+                >
+                  <span
+                    *ngIf="formRegister.get('year')?.errors?.['required']"
+                    class="text-danger"
+                    >L'année est requise</span
+                  >
+                </div>
+              </div>
+
+              <div class="mb-2">
+                <label for="email" class="form-label">Adresse Email</label>
+                <input
+                  type="email"
+                  class="form-control"
+                  placeholder="Votre Email s'il vous plaît"
+                  formControlName="email"
+                />
+                <div
+                  *ngIf="
+                    formRegister.get('email')?.errors &&
+                    (formRegister.get('email')?.dirty ||
+                      formRegister.get('email')?.touched)
+                  "
+                >
+                  <span
+                    *ngIf="formRegister.get('email')?.errors?.['required']"
+                    class="text-danger"
+                    >L'email est requis</span
+                  >
+                  <span
+                    *ngIf="formRegister.get('email')?.errors?.['email']"
+                    class="text-danger"
+                    >Veuillez entrer un email valide</span
+                  >
+                </div>
+              </div>
+              <div class="mb-2">
+                <label for="password" class="form-label">Mot de passe</label>
+                <input
+                  type="password"
+                  class="form-control"
+                  placeholder="Votre mot de passe s'il vous plaît"
+                  formControlName="password"
+                />
+                <div
+                  *ngIf="
+                    formRegister.get('password')?.errors &&
+                    (formRegister.get('password')?.dirty ||
+                      formRegister.get('password')?.touched)
+                  "
+                >
+                  <span
+                    *ngIf="formRegister.get('password')?.errors?.['minlength']"
+                    class="my-2 text-danger"
+                    >Le mot de passe doit contenir au moins 4 caractères</span
+                  >
+                  <span
+                    *ngIf="formRegister.get('password')?.errors?.['maxlength']"
+                    class="my-2 text-danger"
+                    >Le mot de passe doit contenir au maximum 50
+                    caractères</span
+                  >
+                  <span
+                    *ngIf="formRegister.get('password')?.errors?.['required']"
+                    class="my-2 text-danger"
+                    >Le mot de passe est requis</span
+                  >
+                </div>
+              </div>
+              <div class="mb-2">
+                <label for="confirmPassword" class="form-label"
+                  >Confirmer le Mot de Passe</label
+                >
+                <input
+                  type="password"
+                  class="form-control"
+                  placeholder="Confirmez votre mot de passe"
+                  formControlName="confirmPassword"
+                />
+                <div
+                  *ngIf="
+                    formRegister.get('confirmPassword')?.errors &&
+                    (formRegister.get('confirmPassword')?.dirty ||
+                      formRegister.get('confirmPassword')?.touched)
+                  "
+                >
+                  <span
+                    *ngIf="formRegister.get('confirmPassword')?.errors?.['minlength']"
+                    class="my-2 text-danger"
+                    >Le mot de passe doit contenir au moins 4 caractères</span
+                  >
+                  <span
+                    *ngIf="formRegister.get('confirmPwd')?.errors?.['maxlength']"
+                    class="my-2 text-danger"
+                    >Le mot de passe doit contenir au maximum 50
+                    caractères</span
+                  >
+                  <span
+                    *ngIf="formRegister.errors?.['passwordsMismatch']"
+                    class="my-2 text-danger"
+                  >
+                    Les mots de passe ne correspondent pas
+                  </span>
+                </div>
+              </div>
+              <div class="mb-3 text-center">
+                <button
+                  [disabled]="formRegister.invalid"
+                  class="btn btn-primary w-50 mx-auto"
+                >
+                  S'enregistrer
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div [hidden]="isLoading">
+  <app-footer></app-footer>
+</div>

@@ -1,0 +1,8 @@
+body{
+    background-image: url('./assets/images/R.jpeg');
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: white;
+    max-height: 100vh;
+}

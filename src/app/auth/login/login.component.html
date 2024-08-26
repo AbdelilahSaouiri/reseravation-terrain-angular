@@ -1,0 +1,87 @@
+<app-nav></app-nav>
+<div class="mt-5 pt-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-7 mx-auto">
+        <div class="card">
+          <div class="card-title text-center mt-2 font text-primary">
+            s'authentifier
+          </div>
+          <div class="card-body">
+            <form [formGroup]="formGroup" (ngSubmit)="OnSubmit()">
+              <div class="mb-3">
+                <label for="email" class="form-label">Adresse Email</label>
+                <input
+                  type="email"
+                  class="form-control"
+                  placeholder="Votre Email s'il vous plaît"
+                  formControlName="email"
+                />
+                <div
+                  *ngIf="
+                    formGroup.get('email')?.errors &&
+                    (formGroup.get('email')?.dirty ||
+                      formGroup.get('email')?.touched)
+                  "
+                >
+                  <span
+                    *ngIf="formGroup.get('email')?.errors?.['required']"
+                    class="text-danger mt-2"
+                    >L'email est requis</span
+                  >
+                  <span
+                    *ngIf="formGroup.get('email')?.errors?.['email']"
+                    class="text-danger mt-2"
+                    >Veuillez entrer un email valide</span
+                  >
+                </div>
+              </div>
+              <div class="mb-3">
+                <label for="password" class="form-label">Mot de passe</label>
+                <input
+                  type="password"
+                  class="form-control"
+                  placeholder="Votre mot de passe s'il vous plaît"
+                  formControlName="pwd"
+                />
+                <div
+                  *ngIf="
+                    formGroup.get('pwd')?.errors &&
+                    (formGroup.get('pwd')?.dirty ||
+                      formGroup.get('pwd')?.touched)
+                  "
+                >
+                  <span
+                    *ngIf="formGroup.get('pwd')?.errors?.['minlength']"
+                    class="my-2 text-danger"
+                    >Le mot de passe doit contenir au moins 4 caractères</span
+                  >
+                  <span
+                    *ngIf="formGroup.get('pwd')?.errors?.['maxlength']"
+                    class="my-2 text-danger"
+                    >Le mot de passe doit contenir au maximum 50
+                    caractères</span
+                  >
+                  <span
+                    *ngIf="formGroup.get('pwd')?.errors?.['required']"
+                    class="my-2 text-danger"
+                    >Le mot de passe est requis</span
+                  >
+                </div>
+              </div>
+              <div class="mb-3 text-center">
+                <button
+                  [disabled]="formGroup.invalid"
+                  class="btn btn-primary w-50 mx-auto"
+                >
+                  S'authentifier
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>

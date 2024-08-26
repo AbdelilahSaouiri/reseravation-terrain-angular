@@ -1,0 +1,29 @@
+<app-nav></app-nav>
+<div class="mt-5">
+  <app-hero></app-hero>
+</div>
+<div class="mt-3">
+  <div class="container">
+    <div *ngFor="let time of hours; let i = index; trackBy: trackByFn">
+      <div class="card my-2 py-1 border-primary">
+        <div class="card-body mt-3">
+          <span class="border-time mt-5"
+            >{{ time.debut }}
+            <i class="bi bi-clock-fill text-primary-emphasis"></i>
+            {{ time.fin }}</span
+          >
+          <span [hidden]="reserved[i][id]" class="float-end">
+            <button
+              (click)="reserverMatch(i)"
+              class="btn btn-success text-center f-btn"
+            >
+              Réserver
+            </button>
+          </span>
+          <span [hidden]="!reserved[i][id]" class="float-end"> Reserved </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>
