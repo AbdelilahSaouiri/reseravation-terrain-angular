@@ -14,8 +14,8 @@
           >
         </div>
         <div [hidden]="isLoading" class="card">
-          <div class="card-title text-center mt-2 font text-primary">
-            S'enregistrer
+          <div class="card-title text-center mt-3 font text-primary">
+            <h5>Inscription</h5>
           </div>
           <div class="card-body">
             <form [formGroup]="formRegister" (ngSubmit)="OnSubmit()">
@@ -181,7 +181,7 @@
                   [disabled]="formRegister.invalid"
                   class="btn btn-primary w-50 mx-auto"
                 >
-                  S'enregistrer
+                  Inscription
                 </button>
               </div>
             </form>

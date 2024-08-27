@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { matchPasswordsValidator } from '../../matchPasswordsValidator';
 import { AuthService } from '../../services/auth.service';
-import { RegisterUser } from '../../../model/User';
+import { confirmation, RegisterUser } from '../../../model/User';
 import { Router } from '@angular/router';
 
 @Component({
@@ -14,9 +14,12 @@ export class RegisterComponent implements OnInit {
 
   public formRegister!: FormGroup;
   public user!: RegisterUser
-  public messageVerification!: string
   public isLoading: boolean=false;
-  
+  public userName!: string;
+  public tokenConfirmation!: string;
+  public conf!: confirmation;
+  public message!: string;
+
   constructor(private fb: FormBuilder,
     private authService: AuthService,
     private router:Router) { }
@@ -37,13 +40,12 @@ export class RegisterComponent implements OnInit {
     this.isLoading=true
     this.user = this.formRegister.value;
     this.authService.register(this.user).subscribe({
-      next: (data:string) => {
+      next: (data: any) => {
         this.isLoading = false;
-        this.messageVerification = data
-        this.router.navigate(['/verifyEmail',{message:this.messageVerification}]);
-      }, error: err => {
+        this.router.navigateByUrl(`verifyEmail`)
+    }, error: err => {
         this.isLoading=false
-       alert(err.error)
+         alert("error, essayer plus tard !")
       }
     })
   
