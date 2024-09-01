@@ -4,6 +4,7 @@ import { matchPasswordsValidator } from '../../matchPasswordsValidator';
 import { AuthService } from '../../services/auth.service';
 import { confirmation, RegisterUser } from '../../../model/User';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-register',
@@ -42,12 +43,17 @@ export class RegisterComponent implements OnInit {
     this.authService.register(this.user).subscribe({
       next: (data: any) => {
         this.isLoading = false;
-        this.router.navigateByUrl(`verifyEmail`)
+        this.router.navigateByUrl(`/verifyEmail`)  
     }, error: err => {
         this.isLoading=false
-         alert("error, essayer plus tard !")
+        Swal.fire({
+          icon: 'error',
+          timer: 1500,
+          showConfirmButton: false,
+          titleText: `${err['message']}`,
+          
+        })
       }
-    })
-  
+    }) 
   }
 }

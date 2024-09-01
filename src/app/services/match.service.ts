@@ -11,10 +11,11 @@ export class MatchService {
 
   constructor(private http: HttpClient) { }
   
-  reserverMatch(MatchTime: number, DayNumber: number): Observable<matchModel> {
+  reserverMatch(MatchTime: number, DayNumber: number,adversaire:string): Observable<matchModel> {
     const matchInfos = {
       "MatchTime": MatchTime.toString(),
-      "DayNumber":DayNumber.toString()
+      "DayNumber": DayNumber.toString(),
+      "adversaire":adversaire.toString()
     }
     return this.http.post<matchModel>(`${environment.backurl}`,matchInfos);
   }
@@ -23,4 +24,11 @@ export class MatchService {
     const params=new HttpParams().set("jour",jour.toString())
     return this.http.get<matchModel[]>(`${environment.backurl}`,{params});
   }
+
+  // VerifyWhosReserved(i: number, day: number): Observable<any> {
+  //   let params = new HttpParams()
+  //     .set("time", i.toString())
+  //     .set("day",day.toString())
+  //   return this.http.get<any>(`${environment.backurl}`, { params });
+  // }
 }

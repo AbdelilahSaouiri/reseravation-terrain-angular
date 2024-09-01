@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-verification-reg',
@@ -25,9 +26,16 @@ export class VerificationRegComponent implements OnInit{
       this.message=""
       this.authService.ConfirmerCompte(this.token).subscribe({
         next: data => {
-          console.log(data);
+          this.token = data['access-token']
+          this.message = data['message']
+          this.authService.loadProfie(this.token)
         }, error: err => {
-          alert("Erreur, essayer plus tard !");
+          Swal.fire({
+            icon: 'error',
+            timer: 1500,
+            showConfirmButton: false,
+            titleText: 'something wrong ! 😔 please try later '
+          })
         }
       });
     } else {

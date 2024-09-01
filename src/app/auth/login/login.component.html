@@ -42,28 +42,28 @@
                   type="password"
                   class="form-control"
                   placeholder="Votre mot de passe s'il vous plaît"
-                  formControlName="pwd"
+                  formControlName="password"
                 />
                 <div
                   *ngIf="
-                    formGroup.get('pwd')?.errors &&
-                    (formGroup.get('pwd')?.dirty ||
-                      formGroup.get('pwd')?.touched)
+                    formGroup.get('password')?.errors &&
+                    (formGroup.get('password')?.dirty ||
+                      formGroup.get('password')?.touched)
                   "
                 >
                   <span
-                    *ngIf="formGroup.get('pwd')?.errors?.['minlength']"
+                    *ngIf="formGroup.get('password')?.errors?.['minlength']"
                     class="my-2 text-danger"
                     >Le mot de passe doit contenir au moins 4 caractères</span
                   >
                   <span
-                    *ngIf="formGroup.get('pwd')?.errors?.['maxlength']"
+                    *ngIf="formGroup.get('password')?.errors?.['maxlength']"
                     class="my-2 text-danger"
                     >Le mot de passe doit contenir au maximum 50
                     caractères</span
                   >
                   <span
-                    *ngIf="formGroup.get('pwd')?.errors?.['required']"
+                    *ngIf="formGroup.get('password')?.errors?.['required']"
                     class="my-2 text-danger"
                     >Le mot de passe est requis</span
                   >
@@ -84,4 +84,6 @@
     </div>
   </div>
 </div>
-<app-footer></app-footer>
+<div class="pt-4">
+  <app-footer></app-footer>
+</div>
