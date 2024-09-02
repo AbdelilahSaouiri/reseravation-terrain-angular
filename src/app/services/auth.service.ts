@@ -22,8 +22,8 @@ export class AuthService {
     this.loadFromLocalStorage();  
   }
   
-  register(user: RegisterUser): Observable<confirmation> {
-    return this.http.post<confirmation>(`${environment.backAuth}/register`, user);
+  register(user: RegisterUser): Observable<any> {
+    return this.http.post<confirmation>(`${environment.backAuth}/register`,user,{observe:'response'});
   }
 
   login(user: LoginUser): Observable<any> {

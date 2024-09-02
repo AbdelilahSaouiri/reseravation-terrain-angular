@@ -5,6 +5,7 @@ import { AuthService } from '../../services/auth.service';
 import { confirmation, RegisterUser } from '../../../model/User';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { HttpResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-register',
@@ -38,22 +39,40 @@ export class RegisterComponent implements OnInit {
   }
 
   OnSubmit() {
-    this.isLoading=true
-    this.user = this.formRegister.value;
-    this.authService.register(this.user).subscribe({
-      next: (data: any) => {
-        this.isLoading = false;
-        this.router.navigateByUrl(`/verifyEmail`)  
-    }, error: err => {
-        this.isLoading=false
+  this.isLoading = true;
+  this.user = this.formRegister.value;
+  this.authService.register(this.user).subscribe({
+    next: (data: HttpResponse<any>) => {
+      this.isLoading = false;
+      if (data.status === 200) {
+          this.router.navigateByUrl('/verifyEmail');  
+      } else if (data.status===400) {
+        Swal.fire({
+          icon: 'warning',
+          timer: 1500,
+          titleText: `${data.body.message}`,
+          showConfirmButton:false
+        })
+      }
+      else {
         Swal.fire({
           icon: 'error',
           timer: 1500,
           showConfirmButton: false,
-          titleText: `${err['message']}`,
-          
-        })
+          titleText: `Unexpected response received. Please try again later!`,
+        });
       }
-    }) 
-  }
+    },
+    error: err => {
+      this.isLoading = false;
+      Swal.fire({
+        icon: 'error',
+        timer: 1500,
+        showConfirmButton: false,
+        titleText: `Something went wrong 😔 Please try later!`,
+      });
+    }
+  });
+}
+
 }

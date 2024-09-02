@@ -26,9 +26,8 @@ export class VerificationRegComponent implements OnInit{
       this.message=""
       this.authService.ConfirmerCompte(this.token).subscribe({
         next: data => {
-          this.token = data['access-token']
-          this.message = data['message']
-          this.authService.loadProfie(this.token)
+          this.token = data
+          this.loadProfile();
         }, error: err => {
           Swal.fire({
             icon: 'error',
@@ -43,6 +42,9 @@ export class VerificationRegComponent implements OnInit{
     }
   }
 
+  loadProfile() {
+    this.authService.loadProfie(this.token);
+  }
   home() {
     this.router.navigateByUrl("");
   }
